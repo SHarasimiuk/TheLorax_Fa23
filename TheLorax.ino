@@ -86,26 +86,23 @@ void loop() {
     Servo3.write(180);
   }
 
-  // Fifth interaction (backdrop change) + enclosure reset
+  // Fifth and sixth interactions (backdrop change and ignoring Lorax) + enclosure reset
   Switch5State = digitalRead(Switch5);
-  if (Switch5State == HIGH) {
-    Servo4.write(90);
-    LastSwitch5State = Switch5State;
-  } else {
-    if (Switch5State != LastSwitch5State) {
-      if (digitalRead(Switch6) == LOW) {
-        delay(2000);
-        Servo4.write(0);
-        Servo3.write(0);
-        Servo2.write(0);
-      }
-    }
-  }
-
-  // Sixth interaction (ignoring the Lorax)
   if (digitalRead(Switch6) == HIGH) {
-    if (digitalRead(Switch5) == HIGH) {
-      Servo4.write(180);
+    Servo4.write(180);
+  } else {
+    if (Switch5State == HIGH) {
+      Servo4.write(90);
+      LastSwitch5State = Switch5State;
+    } else {
+      if (Switch5State != LastSwitch5State) {
+        if (digitalRead(Switch6) == LOW) {
+          delay(2000);
+          Servo4.write(0);
+          Servo3.write(0);
+          Servo2.write(0);
+        }
+      }
     }
   }
 }
