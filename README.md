@@ -1,2 +1,2 @@
 # TheLorax_Fa23
-I speak for the trees
+This is code that accompanies the interactive cardboard enclosure telling the story of the Lorax.
